@@ -1,6 +1,5 @@
 package Homework.First.SecondTry;
 
-import org.jetbrains.annotations.NotNull;
 
 public class Course {
     Obstacle[] obstacles;
@@ -9,7 +8,7 @@ public class Course {
         this.obstacles = obstacles;
     }
 
-    public void doIt (@NotNull Team team) {
+    public void doIt (Team team) {
 
         Athlete[] athletes = team.getTeam();
         for ( Athlete human: team.getTeam() ) {
