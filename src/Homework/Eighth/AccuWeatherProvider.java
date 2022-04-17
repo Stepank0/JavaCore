@@ -2,9 +2,9 @@ package Homework.Eighth;
 
 import Homework.Eighth.Response.WeatherResponse;
 import Homework.Eighth.enums.Periods;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonArrayFormatVisitor;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -55,8 +55,7 @@ public class AccuWeatherProvider implements WeatherProvider {
             StringReader reader = new StringReader(jsonResponse);
 
             WeatherResponse weatherResponse = objectMapper.readValue(reader, WeatherResponse.class);
-            String result = weatherResponse.toString();
-            System.out.println(result);
+            showWeather(weatherResponse);
 
             // TODO: Сделать в рамках д/з вывод более приятным для пользователя.
             //  Создать класс WeatherResponse, десериализовать ответ сервера в экземпляр класса
@@ -88,21 +87,29 @@ public class AccuWeatherProvider implements WeatherProvider {
             String jsonResponse = client.newCall(request).execute().body().string();
             ObjectMapper objectMapper = new ObjectMapper();
             StringReader reader = new StringReader(jsonResponse);
-            WeatherResponse weatherResponse = objectMapper.readValue(reader, WeatherResponse.class);
+            System.out.println(reader);
 
-            String result = weatherResponse.toString();
-            //так показывает адрессс на сласс
-            System.out.println(result);
-            String temper = String.valueOf(weatherResponse.getTemperature());
-            // ответ null
-            System.out.println(temper);
-            // ответ null
-            System.out.println(weatherResponse.getTemperature());
-            //выводит json десириализированный в map
-            System.out.println(weatherResponse.getAdditionalProperties());
-            
+            WeatherResponse weatherResponse = objectMapper.readValue(reader, WeatherResponse.class);
+            showWeather(weatherResponse);
 
         }
+    }
+
+    public static void showWeather(WeatherResponse weatherResponse) {
+
+        weatherResponse.getDailyForecasts().forEach(e->{
+            String date = e.getDate();
+            if(date.equals(e.getDate())) {
+                System.out.println("-----------------------------------------");
+                System.out.println("city : "  );
+                System.out.println("data: " + e.getDate());
+                System.out.println("temperature max: " + e.getTemperature().getMaximum().getValue());
+                System.out.println("temperature min: " + e.getTemperature().getMinimum().getValue());
+                System.out.println(" day : " + e.getDay().getIconPhrase());
+                System.out.println(" night : " + e.getNight().getIconPhrase());
+                System.out.println("------------------------------------------");
+            }
+        });
     }
 
     public String detectCityKey() throws IOException {

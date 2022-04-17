@@ -1,6 +1,8 @@
 
 package Homework.Eighth.Response;
 
+
+
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Generated;
@@ -13,16 +15,16 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "Metric",
-        "Imperial"
+        "Minimum",
+        "Maximum"
 })
 @Generated("jsonschema2pojo")
 public class Temperature {
 
-    @JsonProperty("Metric")
-    private Metric metric;
-    @JsonProperty("Imperial")
-    private Imperial imperial;
+    @JsonProperty("Minimum")
+    private Minimum minimum;
+    @JsonProperty("Maximum")
+    private Maximum maximum;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -35,33 +37,33 @@ public class Temperature {
 
     /**
      *
-     * @param metric
-     * @param imperial
+     * @param maximum
+     * @param minimum
      */
-    public Temperature(Metric metric, Imperial imperial) {
+    public Temperature(Minimum minimum, Maximum maximum) {
         super();
-        this.metric = metric;
-        this.imperial = imperial;
+        this.minimum = minimum;
+        this.maximum = maximum;
     }
 
-    @JsonProperty("Metric")
-    public Metric getMetric() {
-        return metric;
+    @JsonProperty("Minimum")
+    public Minimum getMinimum() {
+        return minimum;
     }
 
-    @JsonProperty("Metric")
-    public void setMetric(Metric metric) {
-        this.metric = metric;
+    @JsonProperty("Minimum")
+    public void setMinimum(Minimum minimum) {
+        this.minimum = minimum;
     }
 
-    @JsonProperty("Imperial")
-    public Imperial getImperial() {
-        return imperial;
+    @JsonProperty("Maximum")
+    public Maximum getMaximum() {
+        return maximum;
     }
 
-    @JsonProperty("Imperial")
-    public void setImperial(Imperial imperial) {
-        this.imperial = imperial;
+    @JsonProperty("Maximum")
+    public void setMaximum(Maximum maximum) {
+        this.maximum = maximum;
     }
 
     @JsonAnyGetter
