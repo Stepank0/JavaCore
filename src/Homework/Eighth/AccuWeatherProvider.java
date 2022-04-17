@@ -96,12 +96,12 @@ public class AccuWeatherProvider implements WeatherProvider {
     }
 
     public static void showWeather(WeatherResponse weatherResponse) {
-
+        String selectedCity = ApplicationGlobalState.getInstance().getSelectedCity();
         weatherResponse.getDailyForecasts().forEach(e->{
             String date = e.getDate();
             if(date.equals(e.getDate())) {
                 System.out.println("-----------------------------------------");
-                System.out.println("city : "  );
+                System.out.println("city : " + selectedCity  );
                 System.out.println("data: " + e.getDate());
                 System.out.println("temperature max: " + e.getTemperature().getMaximum().getValue());
                 System.out.println("temperature min: " + e.getTemperature().getMinimum().getValue());
