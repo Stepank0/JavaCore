@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "MobileLink",
         "Link"
 })
-@Generated("jsonschema2pojo")
+
 public class Headline {
 
     @JsonProperty("EffectiveDate")
@@ -36,47 +36,15 @@ public class Headline {
     @JsonProperty("Category")
     private String category;
     @JsonProperty("EndDate")
-    private String endDate;
+    private Object endDate;
     @JsonProperty("EndEpochDate")
-    private Integer endEpochDate;
+    private Object endEpochDate;
     @JsonProperty("MobileLink")
     private String mobileLink;
     @JsonProperty("Link")
     private String link;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
-    /**
-     * No args constructor for use in serialization
-     *
-     */
-    public Headline() {
-    }
-
-    /**
-     *
-     * @param severity
-     * @param endEpochDate
-     * @param effectiveEpochDate
-     * @param endDate
-     * @param link
-     * @param text
-     * @param category
-     * @param mobileLink
-     * @param effectiveDate
-     */
-    public Headline(String effectiveDate, Integer effectiveEpochDate, Integer severity, String text, String category, String endDate, Integer endEpochDate, String mobileLink, String link) {
-        super();
-        this.effectiveDate = effectiveDate;
-        this.effectiveEpochDate = effectiveEpochDate;
-        this.severity = severity;
-        this.text = text;
-        this.category = category;
-        this.endDate = endDate;
-        this.endEpochDate = endEpochDate;
-        this.mobileLink = mobileLink;
-        this.link = link;
-    }
 
     @JsonProperty("EffectiveDate")
     public String getEffectiveDate() {
@@ -129,22 +97,22 @@ public class Headline {
     }
 
     @JsonProperty("EndDate")
-    public String getEndDate() {
+    public Object getEndDate() {
         return endDate;
     }
 
     @JsonProperty("EndDate")
-    public void setEndDate(String endDate) {
+    public void setEndDate(Object endDate) {
         this.endDate = endDate;
     }
 
     @JsonProperty("EndEpochDate")
-    public Integer getEndEpochDate() {
+    public Object getEndEpochDate() {
         return endEpochDate;
     }
 
     @JsonProperty("EndEpochDate")
-    public void setEndEpochDate(Integer endEpochDate) {
+    public void setEndEpochDate(Object endEpochDate) {
         this.endEpochDate = endEpochDate;
     }
 
@@ -177,5 +145,4 @@ public class Headline {
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
     }
-
 }

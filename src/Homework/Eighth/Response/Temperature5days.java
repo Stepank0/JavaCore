@@ -1,9 +1,10 @@
 package Homework.Eighth.Response;
 
 
+
 import java.util.HashMap;
 import java.util.Map;
-import javax.annotation.Generated;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -13,50 +14,42 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "Value",
-        "Unit",
-        "UnitType"
+        "Minimum",
+        "Maximum"
 })
 
-public class Maximum {
+public class Temperature5days {
 
-    @JsonProperty("Value")
-    private Double value;
-    @JsonProperty("Unit")
-    private String unit;
-    @JsonProperty("UnitType")
-    private Integer unitType;
+    @JsonProperty("Minimum")
+    private Minimum minimum;
+    @JsonProperty("Maximum")
+    private Maximum maximum;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("Value")
-    public Double getValue() {
-        return value;
+    @Override
+    public String toString() {
+        return "температура воздуха: ночью " + minimum.getValue() + ", днём " + maximum.getValue();
     }
 
-    @JsonProperty("Value")
-    public void setValue(Double value) {
-        this.value = value;
+    @JsonProperty("Minimum")
+    public Minimum getMinimum() {
+        return minimum;
     }
 
-    @JsonProperty("Unit")
-    public String getUnit() {
-        return unit;
+    @JsonProperty("Minimum")
+    public void setMinimum(Minimum minimum) {
+        this.minimum = minimum;
     }
 
-    @JsonProperty("Unit")
-    public void setUnit(String unit) {
-        this.unit = unit;
+    @JsonProperty("Maximum")
+    public Maximum getMaximum() {
+        return maximum;
     }
 
-    @JsonProperty("UnitType")
-    public Integer getUnitType() {
-        return unitType;
-    }
-
-    @JsonProperty("UnitType")
-    public void setUnitType(Integer unitType) {
-        this.unitType = unitType;
+    @JsonProperty("Maximum")
+    public void setMaximum(Maximum maximum) {
+        this.maximum = maximum;
     }
 
     @JsonAnyGetter

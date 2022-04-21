@@ -1,6 +1,7 @@
 package Homework.Eighth;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -10,17 +11,20 @@ public class UserInterface {
     public void runApplication() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println("Введите название города на английском языке");
+            System.out.println("Введите название города на английском языке или \"выход (exit)\" чтобы завершить работу: ");
             String city = scanner.nextLine();
-
+            checkIsExit(city);
             setGlobalCity(city);
 
-            System.out.println("Введите ответ: 1 - Получить текущую погоду, " +
-                    "2 - Получить погоду на следующие 5 дней, " +
+            System.out.println("Введите ответ: 1 - Получить текущую погоду с сайта, " +
+                    "2 - Получить погоду на следующие 5 дней с сайта, " +
+                    "3 - Получить погоду на указанную дату из БД, " +
                     "выход (exit) - завершить работу");
             String result = scanner.nextLine();
 
             checkIsExit(result);
+
+            checkIs3(result);
 
             try {
                 validateUserInput(result);
@@ -31,10 +35,23 @@ public class UserInterface {
 
             try {
                 notifyController(result);
-            } catch (IOException e) {
+            } catch (IOException | SQLException e) {
                 e.printStackTrace();
             }
 
+
+        }
+    }
+
+    private void checkIs3(String result) {
+        String searchDate = null;
+        if (result.equals("3")) {
+            Scanner scanner1 = new Scanner(System.in);
+            // while (true) {
+            System.out.println("Введите дату, на которую хотите проверить прогноз в БД в формате YYYY-MM-DD:");
+            String enteredDate = scanner1.nextLine();
+            setSearchDate(enteredDate);
+            //}
         }
     }
 
@@ -47,6 +64,10 @@ public class UserInterface {
 
     private void setGlobalCity(String city) {
         ApplicationGlobalState.getInstance().setSelectedCity(city);
+    }
+
+    private void setSearchDate(String enteredDate) {
+        ApplicationGlobalState.getInstance().setEnteredDate(enteredDate);
     }
 
 
@@ -62,7 +83,7 @@ public class UserInterface {
         }
     }
 
-    private void notifyController(String input) throws IOException {
+    private void notifyController(String input) throws IOException, SQLException {
         controller.onUserInput(input);
     }
 

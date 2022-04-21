@@ -11,13 +11,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "Icon",
         "IconPhrase",
         "HasPrecipitation"
 })
-@Generated("jsonschema2pojo")
+
 public class Night {
 
     @JsonProperty("Icon")
@@ -29,24 +30,9 @@ public class Night {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    /**
-     * No args constructor for use in serialization
-     *
-     */
-    public Night() {
-    }
-
-    /**
-     *
-     * @param hasPrecipitation
-     * @param icon
-     * @param iconPhrase
-     */
-    public Night(Integer icon, String iconPhrase, Boolean hasPrecipitation) {
-        super();
-        this.icon = icon;
-        this.iconPhrase = iconPhrase;
-        this.hasPrecipitation = hasPrecipitation;
+    @Override
+    public String toString() {
+        return ", ночью: " + iconPhrase;
     }
 
     @JsonProperty("Icon")

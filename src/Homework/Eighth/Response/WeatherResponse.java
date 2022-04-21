@@ -6,74 +6,68 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Generated;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "Headline",
-        "DailyForecasts"
-})
-@Generated("jsonschema2pojo")
+import com.fasterxml.jackson.annotation.*;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+
 public class WeatherResponse {
-
-    @JsonProperty("Headline")
-    private Headline headline;
-    @JsonProperty("DailyForecasts")
-    private List<DailyForecast> dailyForecasts = null;
     @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private String LocalObservationDateTime;
+    @JsonIgnore
+    private float EpochTime;
+    private String WeatherText;
+    Temperature TemperatureObject;
+    @JsonIgnore
+    private String MobileLink;
+    @JsonIgnore
+    private String Link;
 
-    /**
-     * No args constructor for use in serialization
-     *
-     */
-    public WeatherResponse() {
+    @JsonCreator
+    public WeatherResponse(@JsonProperty("LocalObservationDateTime") String LocalObservationDateTime, @JsonProperty("WeatherText") String WeatherText, @JsonProperty("Temperature") Temperature TemperatureObject) {
+        this.WeatherText = WeatherText;
+        this.TemperatureObject = TemperatureObject;
+        this.LocalObservationDateTime = LocalObservationDateTime;
     }
 
-    /**
-     *
-     * @param headline
-     * @param dailyForecasts
-     */
-    public WeatherResponse(Headline headline, List<DailyForecast> dailyForecasts) {
-        super();
-        this.headline = headline;
-        this.dailyForecasts = dailyForecasts;
+    @Override
+    public String toString() {
+        return "Current WeatherText{" +
+                "погода= " + WeatherText +
+                ", температура= " + TemperatureObject + '\'' +
+                '}';
     }
 
-    @JsonProperty("Headline")
-    public Headline getHeadline() {
-        return headline;
+    // Getter Methods
+
+    public String getLocalObservationDateTime() {
+        return LocalObservationDateTime;
     }
 
-    @JsonProperty("Headline")
-    public void setHeadline(Headline headline) {
-        this.headline = headline;
+//    public float getEpochTime() {
+//        return EpochTime;
+//    }
+
+    public String getWeatherText() {
+        return WeatherText;
+    }
+    public Temperature getTemperature() {
+        return TemperatureObject;
     }
 
-    @JsonProperty("DailyForecasts")
-    public List<DailyForecast> getDailyForecasts() {
-        return dailyForecasts;
+    // Setter Methods
+
+    public void setLocalObservationDateTime(String LocalObservationDateTime) {
+        this.LocalObservationDateTime = LocalObservationDateTime;
     }
 
-    @JsonProperty("DailyForecasts")
-    public void setDailyForecasts(List<DailyForecast> dailyForecasts) {
-        this.dailyForecasts = dailyForecasts;
+    public void setWeatherText(String WeatherText) {
+        this.WeatherText = WeatherText;
     }
 
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
+    public void setTemperature(Temperature TemperatureObject) {
+        this.TemperatureObject = TemperatureObject;
     }
 
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
 
 }
